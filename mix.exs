@@ -35,7 +35,10 @@ defmodule ExMacroInspect.MixProject do
       {:credo, "~> 0.9.1", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.2", only: [:dev], runtime: false},
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.8", only: [:dev, :test]}
+      {:excoveralls, "~> 0.8", only: [:dev, :test]},
+      {:distillery, "~> 1.5", runtime: false},
+      {:benchee, "~> 0.11", only: :dev},
+      {:benchee_html, "~> 0.4", only: :dev}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
     ]
@@ -76,10 +79,12 @@ defmodule ExMacroInspect.MixProject do
       name: "ex_macro_inspect",
       organization: "hexpm",
       # These are the default files included in the package
-      files: ["lib", "mix.exs", "README*",  "LICENSE*"],
+      files: ["lib", "mix.exs", "README*", "LICENSE*"],
       licenses: ["GNU 3.0"],
-      links: %{"GitHub" => "https://github.com/smorin/ExMacroInspect", "HexDocs" => "https://hexdocs.pm/ex_macro_inspect/"}
+      links: %{
+        "GitHub" => "https://github.com/smorin/ExMacroInspect",
+        "HexDocs" => "https://hexdocs.pm/ex_macro_inspect/"
+      }
     ]
   end
-
 end

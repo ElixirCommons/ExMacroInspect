@@ -22,3 +22,16 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 ex_macro_inspect-*.tar
 
+# Ignore distilery releases
+/_release
+
+# Ignore benchmarks
+/_benchmarks
+
+/db
+/deps
+/*.ez
+/docs
+
+# Ignore vs-code project files
+/.vs

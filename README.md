@@ -37,9 +37,9 @@ end
   * [x] deployment package          - erlang release with distillery
   * [x] phx configuration 4 package - config.exs setup with aliases
     * [x] distillery config         - update config/prod.exs with "config :phoenix, :serve_endpoints, true"
-  * [ ] logging                     - elixir logging
   * [x] benchmarking setup          - elixir benchee setup
   * [x] load testing setup          - elixir wrk
+  * [ ] logging                     - elixir logging TODO: Add example logging and checklist
 
 ## setup README checklist
 * [ ] create README
@@ -147,6 +147,7 @@ end
 - [ ] check no git dependencies
 - [ ] run: `mix hex.publish`
 - [ ] if first publish update references to hexdocs in readme and mix.exs
+- [ ] test published package
 
 ```
   defp package() do
@@ -161,6 +162,67 @@ end
     ]
   end
 ```
+
+# deployment package checklist
+* [ ] add to deps `{:distillery, "~> 1.5", runtime: false}`
+* [ ] setup by running `mix release.init`
+* [ ] create bin/version_check.exs
+* [ ] test package `make package package-run`
+
+# version_check.exs
+```
+try do
+    # if no args submitted and exception is raised
+    if hd(System.argv()) =~ ~r{^(\d+\.)(\d+\.)(\d+)$} do
+    System.stop(0)
+    else
+    System.stop(1)
+    end
+rescue
+    # if exception it's a invalid version
+    _ -> System.stop(1)
+end
+
+# Believe the receive block prevents the race condition so 
+# that halt will work correctly
+receive do
+  {:hello, msg} -> msg
+after
+  10_000 -> "nothing after 1s"
+end
+```
+
+## benchmarking setup checklist
+* [ ] add to deps `{:benchee, "~> 0.11", only: :dev}`,
+* [ ] add to deps `{:benchee_html, "~> 0.4", only: :dev}`,
+* [ ] create `benchmarks/sample.exs` see below
+* [ ] test `make run-benchmarks`
+# sample.exs
+```
+# https://github.com/PragTob/benchee
+
+
+map_fun = fn(i) -> i + 1 end
+inputs = %{
+  "Small (1 Thousand)"    => Enum.to_list(1..1_000),
+  "Middle (100 Thousand)" => Enum.to_list(1..100_000),
+  "Big (10 Million)"      => Enum.to_list(1..10_000_000),
+}
+
+Benchee.run %{
+    "flat_map"    => fn(_) -> 1+1 end,
+    "map.flatten" => fn(list) -> list |> IO.inspect |> Enum.map(map_fun) |> List.flatten end
+}, time: 15, warmup: 5, inputs: inputs, formatters: [
+    Benchee.Formatters.HTML,
+    Benchee.Formatters.Console
+  ],
+  formatter_options: [html: [file: "_benchmarks/sample.html"]]
+```
+
+## load testing setup checklist
+* [ ] install wrk `brew install wrk`
+* [ ] test `IP=127.0.0.1 PORT=8080 URLPATH=hello/world make load-test`
+
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can

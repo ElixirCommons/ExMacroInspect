@@ -2,6 +2,9 @@
 
 .PHONY: help clean
 
+# Copyright Steve Morin 2015
+# https://github.com/smorin
+
 ### make help - is self documenting
 # Use double # to make a command self documenting
 
@@ -190,16 +193,12 @@ run-benchmarks: ## run all benchmarks using benchee
 
 # Reference: https://github.com/wg/wrk
 # Reference: https://github.com/tsenart/vegeta # alternate load testing framework
-load-test-error: wrk ## run a load test with wrk
-	@echo makefile:load-test
-	wrk --threads 12 --connections 400 --duration 30s --latency --timeout 30s http://$${IP:-127.0.0.1}:$${PORT:-4000}/v1/100/color.pnnnng
-
 load-test: wrk ## run a load test with wrk
 	@echo makefile:load-test
-	wrk --threads 12 --connections 400 --duration 30s --latency --timeout 30s http://$${IP:-127.0.0.1}:$${PORT:-4000}/v1/100/color.jpg
+	wrk --threads 12 --connections 400 --duration 30s --latency --timeout 30s http://$${IP:-127.0.0.1}:$${PORT:-4000}/$${URLPATH:-}
 
-get-pixel:
-	curl --request GET "http://$${IP:-127.0.0.1}:$${PORT:-4000}/v1/100/color.jpg"
+get:
+	curl --request GET "http://$${IP:-127.0.0.1}:$${PORT:-4000}/$${URLPATH:-}"
 
 wrk:
 	@echo makefile:wrk
