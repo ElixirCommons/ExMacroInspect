@@ -4,10 +4,21 @@ defmodule ExMacroInspect.MixProject do
   def project do
     [
       app: :ex_macro_inspect,
-      version: "0.1.0",
+      version: "1.0.1",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      aliases: aliases(),
+      default_task: "help_make",
+      name: "ex_macro_inspect",
+      source_url: "https://github.com/smorin/ExMacroInspect",
+      homepage_url: "https://github.com/smorin/ExMacroInspect",
+      description: """
+      ExMacroInspect is a macro inspection library for elixir. I makes it easy for a developer to see what is passed into a macro during macro development. 
+      """,
+      docs: docs(),
+      test_coverage: [tool: ExCoveralls],
+      package: package()
     ]
   end
 
@@ -21,8 +32,54 @@ defmodule ExMacroInspect.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:credo, "~> 0.9.1", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0.0-rc.2", only: [:dev], runtime: false},
+      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.8", only: [:dev, :test]}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
     ]
   end
+
+  defp aliases do
+    [
+      help_make: "cmd make"
+    ]
+  end
+
+  ### --
+  # all configuration required by ex_doc to configure the generation of documents
+  ### --
+  defp docs do
+    [
+      main: "ExMacroInspect",
+      logo: "guides/assets/elixir.png",
+      extras: ["README.md": [filename: "readme", title: "README"]],
+      extra_section: "GUIDES",
+      groups_for_extras: [
+        Introduction: Path.wildcard("guides/introduction/*.md")
+      ],
+      # Ungrouped Modules:
+      #
+      # OtherModules
+      groups_for_modules: [
+        Macros: [
+          ExMacroInspect
+        ]
+      ]
+    ]
+  end
+
+  defp package() do
+    [
+      # This option is only needed when you don't want to use the OTP application name
+      name: "ex_macro_inspect",
+      organization: "hexpm",
+      # These are the default files included in the package
+      files: ["lib", "mix.exs", "README*",  "LICENSE*"],
+      licenses: ["GNU 3.0"],
+      links: %{"GitHub" => "https://github.com/smorin/ExMacroInspect", "HexDocs" => "https://hexdocs.pm/ex_macro_inspect/"}
+    ]
+  end
+
 end
