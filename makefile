@@ -170,6 +170,8 @@ package-stop:  ## stop package release from running
 	_release/releases/$$APP_VERSION/$(app-name).sh rpc init stop
 	# can also use PORT=4000 _release/bin/$(app-name) stop, when started with 'start'
 
+publish: ## publish project to hex
+	mix hex.publish
 
 version: ## prints the app version
 	@APP_VERSION=$$(mix run --no-start -e 'IO.puts Mix.Project.config |> Keyword.get(:version)'); echo "$$APP_VERSION"
