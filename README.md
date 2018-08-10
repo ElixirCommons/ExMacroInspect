@@ -74,6 +74,23 @@ See more below
 
 ## build configuration checklist
 * [ ] update `def project do` with `aliases: aliases()`,
+* [ ] automatic version management for non hex packages
+```
+# make sure you use tags for MAJOR.MINOR versions
+# e.g. git tag --annotate v1.4 --message v1.4
+# this goes in your mix.exs
+
+def app_version do
+  # get suffix
+  build_number = System.get_env("BUILD_NUMBER")
+  suffix = if build_number, do: ".build-#{build_number}", else: build_number # => .build-443
+
+  # get git version
+  {git_desc, 0} = System.cmd("git", ~w[describe --long])
+  ["v" <> major_minor, patch, git_commit_id] = git_desc |> String.trim |> String.split("-") # => ["v1.4", "270", "fa78ab71e"]
+  "#{major_minor}.#{patch}+ref-#{git_commit_id}#{suffix}" # => 1.4.270+ref-fa78ab71e.build-443
+end
+```
 * [ ] create `defp aliases` see below
 * [ ] update `def project do` with `default_task: "help_make"`,
 ```
