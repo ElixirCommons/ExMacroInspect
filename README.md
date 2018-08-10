@@ -1,6 +1,6 @@
 # ExMacroInspect
 
-Is a checklist to follow to create new Elixir projects.
+Is checklist to follow to create new Elixir projects to add things like, formating, versioning, etc.
 
 Also `ExMacroInspect` is a macro inspection library for elixir. I makes it easy for a developer to see what is passed into a macro during macro development.
 
@@ -9,6 +9,9 @@ Also `ExMacroInspect` is a macro inspection library for elixir. I makes it easy 
 
 # Documentation:
 * https://hexdocs.pm/ex_macro_inspect/
+
+# IMPORTANT
+* Skip the Installation and go to `Core Checklist` if your using the checklist to start a new project.
 
 ## Installation
 
@@ -23,7 +26,7 @@ def deps do
 end
 ```
 
-## Core Checklist
+# Core Checklist
   * [x] setup README.md             - create README
   * [x] setup LICENSE file          - create LICENSE pick Apache
   * [x] automated build             - makefile automated help
