@@ -1,6 +1,8 @@
 # ExMacroInspect
 
-`ExMacroInspect` is a macro inspection library for elixir. I makes it easy for a developer to see what is passed into a macro during macro development.
+Is a checklist to follow to create new Elixir projects.
+
+Also `ExMacroInspect` is a macro inspection library for elixir. I makes it easy for a developer to see what is passed into a macro during macro development.
 
 # Source:
 * https://github.com/smorin/ExMacroInspect
