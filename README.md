@@ -33,6 +33,21 @@ end
   * [x] code coverage               - elixir code coverage with excoveralls
   * [x] publish the package         - publish to hex
 
+See more below
+
+# TODO
+  * security checks with `sobelow` https://github.com/nccgroup/sobelow
+  * debugging with `recon` https://github.com/ferd/recon
+  * launch observer
+  * launch web observer `wobserver` https://github.com/shinyscorpion/wobserver
+  * install `observer_cli`: https://github.com/zhongwencool/observer_cli
+  * Crash on incorrect formatting in CI `mix format --check-formatted`
+  * Crash on warnings (warnings as errors) in CI `mix do clean, compile --force --warning-as-errors`
+  * change `mix clean` to not remove all the downloaded deps which may not be needed.
+  * Check recommendation using `preferred_cli_env`: https://github.com/parroty/excoveralls#mixexs for commonly used tasks instead of prefixing with MIX_ENV=test
+
+
+
 ## Optional Checklist
   * [x] deployment package          - erlang release with distillery
   * [x] phx configuration 4 package - config.exs setup with aliases
