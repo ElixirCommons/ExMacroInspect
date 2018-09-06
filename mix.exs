@@ -4,7 +4,7 @@ defmodule ExMacroInspect.MixProject do
   def project do
     [
       app: :ex_macro_inspect,
-      version: "1.0.1",
+      version: "1.0.2",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -84,7 +84,8 @@ defmodule ExMacroInspect.MixProject do
       links: %{
         "GitHub" => "https://github.com/ElixirCommons/ExMacroInspect",
         "HexDocs" => "https://hexdocs.pm/ex_macro_inspect/"
-      }
+      },
+      maintainers: ["Steve Morin steve at stevemorin.com"]
     ]
   end
 end
