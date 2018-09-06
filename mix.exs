@@ -11,8 +11,8 @@ defmodule ExMacroInspect.MixProject do
       aliases: aliases(),
       default_task: "help_make",
       name: "ex_macro_inspect",
-      source_url: "https://github.com/smorin/ExMacroInspect",
-      homepage_url: "https://github.com/smorin/ExMacroInspect",
+      source_url: "https://github.com/ElixirCommons/ExMacroInspect",
+      homepage_url: "https://github.com/ElixirCommons/ExMacroInspect",
       description: """
       ExMacroInspect is a macro inspection library for elixir. I makes it easy for a developer to see what is passed into a macro during macro development. 
       """,
@@ -82,7 +82,7 @@ defmodule ExMacroInspect.MixProject do
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       licenses: ["GNU 3.0"],
       links: %{
-        "GitHub" => "https://github.com/smorin/ExMacroInspect",
+        "GitHub" => "https://github.com/ElixirCommons/ExMacroInspect",
         "HexDocs" => "https://hexdocs.pm/ex_macro_inspect/"
       }
     ]
